@@ -1,8 +1,8 @@
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
-Version:	1.1.3
+Version:	1.1.4
 Release:	%mkrel 1
-License:	GPLv2
+License:	GPLv2+
 Group:		Video
 URL:		http://code.google.com/p/ffmpegthumbnailer/
 Source0:	http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.bz2
