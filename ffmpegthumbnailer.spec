@@ -8,6 +8,7 @@ URL:		http://code.google.com/p/ffmpegthumbnailer/
 Source0:	http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.bz2
 BuildRequires:	ffmpeg-devel
 BuildRequires:	libpng-devel
+BuildRequires:	libjpeg-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
