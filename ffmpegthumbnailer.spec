@@ -1,3 +1,7 @@
+%define major 2
+%define libname %mklibname %{name} %{major}
+%define develname %mklibname %{name} -d
+
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
 Version:	1.2.2
@@ -9,6 +13,7 @@ Source0:	http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.bz
 BuildRequires:	ffmpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libjpeg-devel
+Requires:	%{libname} = %{version}-%{release}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -21,17 +26,37 @@ flags of ffmpeg.
 This thumbnailer was designed to be as fast and 
 lightweight as possible.
 
+%package -n %{libname}
+Summary:	Main library for %{name}
+Group:		Video
+
+%description -n %{libname}
+Main library for %{name}.
+
+%package -n %{develname}
+Summary:	Development files for %{name}
+Group:		Development/C++
+Provides:	lib%{name}-devel = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
+
+%description -n %{develname}
+Development files for %{name}.
+
 %prep
 %setup -q
 
 %build
-%configure2_5x
+%configure2_5x \
+	--disable-static
+
 %make
 
 %install
 rm -rf %{buildroot}
 
 %makeinstall_std
+
+rm -rf %{buildroot}%{_libdir}/libffmpegthumbnailer.la
 
 %clean
 rm -rf %{buildroot}
@@ -40,3 +65,11 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc AUTHORS ChangeLog README TODO
 %{_bindir}/ffmpegthumbnailer
+
+%files -n %{libname}
+%{_libdir}/*.so.%{major}*
+
+%files -n %{develname}
+%{_libdir}/*.so
+%{_includedir}/*
+%{_libdir}/pkgconfig/*.pc
