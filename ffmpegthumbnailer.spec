@@ -65,6 +65,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc AUTHORS ChangeLog README TODO
 %{_bindir}/ffmpegthumbnailer
+%{_mandir}/man1/*
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}*
