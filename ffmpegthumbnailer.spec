@@ -1,11 +1,11 @@
-%define major 2
+%define major 3
 %define libname %mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
 
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
-Version:	1.3.0
-Release:	%mkrel 2
+Version:	1.4.0
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Video
 URL:		http://code.google.com/p/ffmpegthumbnailer/
@@ -29,6 +29,7 @@ lightweight as possible.
 %package -n %{libname}
 Summary:	Main library for %{name}
 Group:		Video
+Obsoletes:	%{mklibname %{name} 2}
 
 %description -n %{libname}
 Main library for %{name}.
