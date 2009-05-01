@@ -4,13 +4,12 @@
 
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
-Version:	1.4.0
-Release:	%mkrel 2
+Version:	1.5.0
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Video
 URL:		http://code.google.com/p/ffmpegthumbnailer/
 Source0:	http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.bz2
-Patch0:		ffmpegthumbnailer-1.4.0-fix-against-latest-ffmpeg.patch
 BuildRequires:	ffmpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libjpeg-devel
@@ -46,7 +45,6 @@ Development files for %{name}.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure2_5x \
