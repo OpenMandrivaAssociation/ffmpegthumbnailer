@@ -1,15 +1,15 @@
-%define major 3
+%define major 4
 %define libname %mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
 
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
-Version:	1.5.6
-Release:	%mkrel 2
+Version:	2.0.0
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Video
 URL:		http://code.google.com/p/ffmpegthumbnailer/
-Source0:	http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.bz2
+Source0:	http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.gz
 BuildRequires:	ffmpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libjpeg-devel
