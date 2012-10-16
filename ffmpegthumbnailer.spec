@@ -4,8 +4,8 @@
 
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
-Version:	2.0.7
-Release:	%mkrel 2
+Version:	2.0.8
+Release:	1
 License:	GPLv2+
 Group:		Video
 URL:		http://code.google.com/p/ffmpegthumbnailer/
@@ -14,7 +14,6 @@ BuildRequires:	ffmpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libjpeg-devel
 Requires:	%{libname} = %{version}-%{release}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 This video thumbnailer can be used by file managers to 
@@ -54,17 +53,11 @@ Development files for %{name}.
 %make
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 
 rm -rf %{buildroot}%{_libdir}/libffmpegthumbnailer.la
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc AUTHORS ChangeLog README TODO
 %{_bindir}/ffmpegthumbnailer
 %{_mandir}/man1/*
