@@ -5,13 +5,13 @@
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
 Version:	2.0.8
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Video
 URL:		http://code.google.com/p/ffmpegthumbnailer/
-Source0:	http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.gz
+Source0:		http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.gz
 BuildRequires:	ffmpeg-devel
-BuildRequires:	libpng-devel
+BuildRequires:	pkgconfig(libpng)
 BuildRequires:	libjpeg-devel
 Requires:	%{libname} = %{version}-%{release}
 
@@ -45,11 +45,12 @@ Development files for %{name}.
 
 %prep
 %setup -q
+%__chmod 644 AUTHORS ChangeLog README TODO
 
 %build
 %configure2_5x \
-	--disable-static
-
+	--disable-static 
+	
 %make
 
 %install
@@ -57,15 +58,21 @@ Development files for %{name}.
 
 rm -rf %{buildroot}%{_libdir}/libffmpegthumbnailer.la
 
+
 %files
 %doc AUTHORS ChangeLog README TODO
 %{_bindir}/ffmpegthumbnailer
 %{_mandir}/man1/*
 
 %files -n %{libname}
+%doc AUTHORS ChangeLog README TODO
 %{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
+%doc AUTHORS ChangeLog README TODO
 %{_libdir}/*.so
 %{_includedir}/*
 %{_libdir}/pkgconfig/*.pc
+
+
+
