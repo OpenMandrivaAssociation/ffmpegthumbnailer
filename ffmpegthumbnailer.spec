@@ -10,6 +10,7 @@ License:	GPLv2+
 Group:		Video
 Url:		http://code.google.com/p/ffmpegthumbnailer/
 Source0:	http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.gz
+Patch1:		ffmpegthumbnailer-2.0.8-libpng-1.6.patch
 BuildRequires:	ffmpeg-devel
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	jpeg-devel
@@ -61,6 +62,7 @@ Development files for %{name}.
 %prep
 %setup -q
 chmod 644 AUTHORS ChangeLog README TODO
+%apply_patches
 
 %build
 %configure2_5x \

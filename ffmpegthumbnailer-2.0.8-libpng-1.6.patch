@@ -1,0 +1,10 @@
+--- a/libffmpegthumbnailer/pngwriter.cpp~	2012-08-25 20:07:44.000000000 +0800
++++ b/libffmpegthumbnailer/pngwriter.cpp	2013-06-03 00:35:52.233992303 +0800
+@@ -16,6 +16,7 @@
+ 
+ #include "pngwriter.h"
+ #include <stdexcept>
++#include <cstring>
+ #include <cassert>
+ 
+ using namespace std;
