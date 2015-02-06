@@ -5,7 +5,7 @@
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
 Version:	2.0.8
-Release:	5
+Release:	6
 License:	GPLv2+
 Group:		Video
 Url:		http://code.google.com/p/ffmpegthumbnailer/
