@@ -5,7 +5,7 @@
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
 Version:	2.0.8
-Release:	6
+Release:	7
 License:	GPLv2+
 Group:		Video
 Url:		http://code.google.com/p/ffmpegthumbnailer/
@@ -14,6 +14,7 @@ Patch1:		ffmpegthumbnailer-2.0.8-libpng-1.6.patch
 BuildRequires:	ffmpeg-devel
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	jpeg-devel
+Requires:	%{libname} = %{EVRD}
 
 %description
 This video thumbnailer can be used by file managers to create thumbnails for
@@ -65,7 +66,7 @@ chmod 644 AUTHORS ChangeLog README TODO
 %apply_patches
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static
 
 %make
