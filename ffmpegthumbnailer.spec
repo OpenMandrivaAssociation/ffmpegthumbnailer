@@ -4,16 +4,16 @@
 
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
-Version:	2.0.8
-Release:	7
+Version:	2.1.0
+Release:	1
 License:	GPLv2+
 Group:		Video
-Url:		http://code.google.com/p/ffmpegthumbnailer/
-Source0:	http://ffmpegthumbnailer.googlecode.com/files/%{name}-%{version}.tar.gz
-Patch1:		ffmpegthumbnailer-2.0.8-libpng-1.6.patch
+Url:		https://github.com/dirkvdb/ffmpegthumbnailer
+Source0:	https://github.com/dirkvdb/ffmpegthumbnailer/releases/download/%{version}/%{name}-%{version}.tar.bz2
 BuildRequires:	ffmpeg-devel
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	jpeg-devel
+BuildRequires:	cmake >= 2.8
 Requires:	%{libname} = %{EVRD}
 
 %description
@@ -24,8 +24,7 @@ files, so supported videoformats depend on the configuration flags of ffmpeg.
 This thumbnailer was designed to be as fast and lightweight as possible.
 
 %files
-%doc AUTHORS ChangeLog README TODO
-%{_bindir}/ffmpegthumbnailer
+%{_bindir}/%{name}
 %{_mandir}/man1/*
 
 #----------------------------------------------------------------------------
@@ -38,7 +37,6 @@ Group:		Video
 Shared library for %{name}.
 
 %files -n %{libname}
-%doc AUTHORS ChangeLog README TODO
 %{_libdir}/libffmpegthumbnailer.so.%{major}*
 
 #----------------------------------------------------------------------------
@@ -63,14 +61,15 @@ Development files for %{name}.
 %prep
 %setup -q
 chmod 644 AUTHORS ChangeLog README TODO
-%apply_patches
 
 %build
-%configure \
-	--disable-static
+%cmake \
+     -DENABLE_STATIC:BOOL=OFF \
+     -DENABLE_GIO:BOOL=ON \
+     -DENABLE_THUMBNAILER:BOOL=ON
 
 %make
 
 %install
-%makeinstall_std
+%makeinstall_std -C build
 
