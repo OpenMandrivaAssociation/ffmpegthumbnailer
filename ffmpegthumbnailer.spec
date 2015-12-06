@@ -25,6 +25,7 @@ This thumbnailer was designed to be as fast and lightweight as possible.
 
 %files
 %{_bindir}/%{name}
+%{_datadir}/thumbnailers/ffmpegthumbnailer.thumbnailer
 %{_mandir}/man1/*
 
 #----------------------------------------------------------------------------
