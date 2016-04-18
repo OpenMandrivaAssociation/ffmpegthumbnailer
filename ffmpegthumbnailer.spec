@@ -60,7 +60,9 @@ Development files for %{name}.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q
+%setup -qcT
+export LC_ALL=en_US.UTF-8
+tar xf %SOURCE0 --strip-components=1
 chmod 644 AUTHORS ChangeLog README TODO
 
 %build
