@@ -1,2 +1,4 @@
+removed_sources:
+  ffmpegthumbnailer-2.1.1.tar.bz2: c8f9a9d6ff064ce83b604f0e751cdc80c586720d
 sources:
-  "ffmpegthumbnailer-2.1.1.tar.bz2": c8f9a9d6ff064ce83b604f0e751cdc80c586720d
+  ffmpegthumbnailer-2.2.0.tar.bz2: 4c7cdb3f2f7acd73c2f5138429ed2d2397f0f146
