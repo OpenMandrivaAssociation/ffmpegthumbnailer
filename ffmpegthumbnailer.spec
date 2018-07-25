@@ -5,7 +5,7 @@
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
 Version:	2.2.0
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Video
 Url:		https://github.com/dirkvdb/ffmpegthumbnailer
