@@ -4,8 +4,8 @@
 
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
-Version:	2.2.0
-Release:	2
+Version:	2.2.2
+Release:	1
 License:	GPLv2+
 Group:		Video
 Url:		https://github.com/dirkvdb/ffmpegthumbnailer
@@ -71,8 +71,8 @@ chmod 644 AUTHORS ChangeLog README TODO
      -DENABLE_GIO:BOOL=ON \
      -DENABLE_THUMBNAILER:BOOL=ON
 
-%make
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
 
