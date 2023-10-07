@@ -1,5 +1,6 @@
---- a/libffmpegthumbnailer/moviedecoder.cpp	2017-11-21 14:06:57.000000000 -0500
-+++ b/libffmpegthumbnailer/moviedecoder.cpp	2023-05-05 13:14:47.946560668 -0400
+diff -uraN ffmpegthumbnailer-2.2.2/libffmpegthumbnailer/moviedecoder.cpp omv-ffmpegthumbnailer-2.2.2/libffmpegthumbnailer/moviedecoder.cpp
+--- ffmpegthumbnailer-2.2.2/libffmpegthumbnailer/moviedecoder.cpp	2017-11-21 20:06:57.000000000 +0100
++++ omv-ffmpegthumbnailer-2.2.2/libffmpegthumbnailer/moviedecoder.cpp	2023-10-07 17:47:51.138254187 +0200
 @@ -41,11 +41,6 @@
  namespace ffmpegthumbnailer
  {
@@ -27,7 +28,7 @@
      {
 -        avcodec_close(m_pVideoCodecContext);
 -        m_pVideoCodecContext = nullptr;
-+        avcodec_free_context(&m_pVideoCodecContext);
++         avcodec_free_context(&m_pVideoCodecContext);
      }
  
      if ((!m_FormatContextWasGiven) && m_pFormatContext)
@@ -38,7 +39,7 @@
 -        auto ctx = m_pFormatContext->streams[i]->codec;
 -        if (ctx->codec_type == AVMEDIA_TYPE_VIDEO)
 +        auto par = m_pFormatContext->streams[i]->codecpar;
-+        if (par->codec_type == AVMEDIA_TYPE_VIDEO)
+++       if (par->codec_type == AVMEDIA_TYPE_VIDEO)
          {
 -            if (!preferEmbeddedMetadata || !isStillImageCodec(ctx->codec_id))
 +            if (!preferEmbeddedMetadata || !isStillImageCodec(par->codec_id))
@@ -59,19 +60,19 @@
          throw logic_error("Video Codec not found");
      }
  
-+    m_pVideoCodecContext = avcodec_alloc_context3(m_pVideoCodec);
++     m_pVideoCodecContext = avcodec_alloc_context3(m_pVideoCodec);
 +
-+    if (m_pVideoCodecContext == nullptr)
-+    {
++     if (m_pVideoCodecContext == nullptr)
++     {
 +        destroy();
 +        throw logic_error("Could not allocate video codec context");
-+    }
++     }
 +
-+    if (avcodec_parameters_to_context(m_pVideoCodecContext, m_pVideoStream->codecpar) < 0)
-+    {
-+        destroy();
-+        throw logic_error("Could not configure video codec context");
-+    }
++     if (avcodec_parameters_to_context(m_pVideoCodecContext, m_pVideoStream->codecpar) < 0)
++     {
++         destroy();
++         throw logic_error("Could not configure video codec context");
++     }
 +
      m_pVideoCodecContext->workaround_bugs = 1;
  
@@ -102,7 +103,7 @@
  
      AVFilterContext* yadifFilter = nullptr;
      if (m_pFrame->interlaced_frame != 0)
-@@ -500,15 +496,15 @@
+@@ -500,10 +496,10 @@
      }
  
      checkRc(av_seek_frame(m_pFormatContext, -1, timestamp, 0), "Seeking in video failed");
@@ -115,12 +116,6 @@
  
      do
      {
-         int count = 0;
--        gotFrame = 0;
-+        gotFrame = false;
- 
-         while (!gotFrame && count < 20)
-         {
 @@ -552,17 +548,33 @@
          return false;
      }
@@ -162,23 +157,14 @@
  }
  
  bool MovieDecoder::getVideoPacket()
-@@ -570,8 +582,6 @@
+@@ -570,7 +582,6 @@
      bool framesAvailable = true;
      bool frameDecoded = false;
  
 -    int attempts = 0;
--
+ 
      if (m_pPacket)
      {
-         av_packet_unref(m_pPacket);
-@@ -580,6 +590,7 @@
- 
-     m_pPacket = new AVPacket();
- 
-+
-     while (framesAvailable && !frameDecoded)
-     {
-         framesAvailable = av_read_frame(m_pFormatContext, m_pPacket) >= 0;
 @@ -644,7 +655,7 @@
  
  int32_t MovieDecoder::getStreamRotation()
@@ -188,9 +174,9 @@
      if (matrix)
      {
          auto angle = lround(av_display_rotation_get(matrix));
-
---- a/libffmpegthumbnailer/moviedecoder.h	2017-11-12 04:23:38.000000000 -0500
-+++ b/libffmpegthumbnailer/moviedecoder.h	2023-05-05 13:26:07.095529911 -0400
+diff -uraN ffmpegthumbnailer-2.2.2/libffmpegthumbnailer/moviedecoder.h omv-ffmpegthumbnailer-2.2.2/libffmpegthumbnailer/moviedecoder.h
+--- ffmpegthumbnailer-2.2.2/libffmpegthumbnailer/moviedecoder.h	2017-11-12 10:23:38.000000000 +0100
++++ omv-ffmpegthumbnailer-2.2.2/libffmpegthumbnailer/moviedecoder.h	2023-10-07 17:48:23.550967416 +0200
 @@ -78,7 +78,7 @@
      int                     m_VideoStream;
      AVFormatContext*        m_pFormatContext;
