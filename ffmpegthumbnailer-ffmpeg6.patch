@@ -39,7 +39,7 @@ diff -uraN ffmpegthumbnailer-2.2.2/libffmpegthumbnailer/moviedecoder.cpp omv-ffm
 -        auto ctx = m_pFormatContext->streams[i]->codec;
 -        if (ctx->codec_type == AVMEDIA_TYPE_VIDEO)
 +        auto par = m_pFormatContext->streams[i]->codecpar;
-++       if (par->codec_type == AVMEDIA_TYPE_VIDEO)
++        if (par->codec_type == AVMEDIA_TYPE_VIDEO)
          {
 -            if (!preferEmbeddedMetadata || !isStillImageCodec(ctx->codec_id))
 +            if (!preferEmbeddedMetadata || !isStillImageCodec(par->codec_id))
