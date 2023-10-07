@@ -63,8 +63,8 @@ Development files for %{name}.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -qcT
-%autopatch -p1
+%autosetup -p1
+
 export LC_ALL=en_US.UTF-8
 tar xf %SOURCE0 --strip-components=1
 chmod 644 AUTHORS ChangeLog README TODO
