@@ -10,8 +10,8 @@ License:	GPLv2+
 Group:		Video
 Url:		https://github.com/dirkvdb/ffmpegthumbnailer
 Source0:	https://github.com/dirkvdb/ffmpegthumbnailer/releases/download/%{version}/%{name}-%{version}.tar.bz2
-#Patch0:   ffmpegthumbnailer-ffmpeg6.patch
-Patch1:     https://patch-diff.githubusercontent.com/raw/dirkvdb/ffmpegthumbnailer/pull/201.patch
+Patch0:   ffmpegthumbnailer-ffmpeg6.patch
+#Patch1:     https://patch-diff.githubusercontent.com/raw/dirkvdb/ffmpegthumbnailer/pull/201.patch
 
 BuildRequires:	ffmpeg-devel
 BuildRequires:	pkgconfig(libpng)
