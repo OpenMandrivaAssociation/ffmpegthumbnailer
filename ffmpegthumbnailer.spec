@@ -4,12 +4,12 @@
 
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
-Version:	2.2.2
+Version:	2.2.3
 Release:	1
 License:	GPLv2+
 Group:		Video
 Url:		https://github.com/dirkvdb/ffmpegthumbnailer
-Source0:	https://github.com/dirkvdb/ffmpegthumbnailer/releases/download/%{version}/%{name}-%{version}.tar.bz2
+Source0:	https://github.com/dirkvdb/ffmpegthumbnailer/archive/%{version}/%{name}-%{version}.tar.gz
 BuildRequires:	ffmpeg-devel
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	jpeg-devel
