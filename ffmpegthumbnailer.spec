@@ -5,15 +5,21 @@
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
 Version:	2.2.3
-Release:	3
+Release:	4
 License:	GPLv2+
 Group:		Video
 Url:		https://github.com/dirkvdb/ffmpegthumbnailer
 Source0:	https://github.com/dirkvdb/ffmpegthumbnailer/archive/%{version}/%{name}-%{version}.tar.gz
+Patch0:         newest-ffmpeg.patch
+
+BuildSystem:    cmake
+BuildOption:    -DENABLE_STATIC:BOOL=OFF
+BuildOption:    -DENABLE_GIO:BOOL=ON
+BuildOption:    -DENABLE_THUMBNAILER:BOOL=ON
+
 BuildRequires:	ffmpeg-devel
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	jpeg-devel
-BuildRequires:	cmake >= 2.8
 Requires:	%{libname} = %{EVRD}
 
 %description
@@ -58,21 +64,4 @@ Development files for %{name}.
 %{_libdir}/pkgconfig/*.pc
 
 #----------------------------------------------------------------------------
-
-%prep
-%setup -qcT
-export LC_ALL=en_US.UTF-8
-tar xf %SOURCE0 --strip-components=1
-chmod 644 AUTHORS ChangeLog README TODO
-
-%build
-%cmake \
-     -DENABLE_STATIC:BOOL=OFF \
-     -DENABLE_GIO:BOOL=ON \
-     -DENABLE_THUMBNAILER:BOOL=ON
-
-%make_build
-
-%install
-%make_install -C build
 
