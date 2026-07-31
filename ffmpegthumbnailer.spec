@@ -4,7 +4,7 @@
 
 Summary:	Lightweight video thumbnailer
 Name:		ffmpegthumbnailer
-Version:	2.2.4
+Version:	2.3.0
 Release:	1
 License:	GPLv2+
 Group:		Video
